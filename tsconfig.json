@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2022",
     "lib": ["ES2022"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "ES6",
-    "rootDir": "./src",
+    "module": "CommonJS",
     "declaration": true,
     "outDir": "./dist",
     "removeComments": true,
@@ -13,5 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

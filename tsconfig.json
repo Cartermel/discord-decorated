@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022"],
+    "target": "ES2021",
+    "lib": ["ESNext"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "declaration": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "removeComments": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,

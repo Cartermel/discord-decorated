@@ -1,6 +1,6 @@
 {
   "name": "@cartermel/discord.js-decorated",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "https://github.com/Cartermel/discord.js-decorated.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,8 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
-    "build:publish": "rimraf dist/ && tsc && yarn publish --access=public",
+    "build:clean": "rimraf dist/ && tsc",
+    "build:publish": "yarn build:clean && yarn publish --access=public",
     "watch": "tsc --watch"
   }
 }

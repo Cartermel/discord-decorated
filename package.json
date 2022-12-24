@@ -1,6 +1,6 @@
 {
   "name": "@cartermel/discord.js-decorated",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": "https://github.com/Cartermel/discord.js-decorated.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

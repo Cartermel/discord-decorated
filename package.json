@@ -1,7 +1,7 @@
 {
   "name": "@cartermel/discord.js-decorated",
   "version": "1.0.0",
-  "repository": "",
+  "repository": "https://github.com/Cartermel/discord.js-decorated.git",
   "devDependencies": {
     "@types/node": "^18.11.17",
     "rimraf": "^3.0.2",

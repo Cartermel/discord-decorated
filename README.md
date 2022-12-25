@@ -28,6 +28,7 @@ discord.js-decorated seeks to make the setup for a discord bot simple, just crea
 import "reflect-metadata"; // ensure to import a reflect-metadata as early as possible
 import { DiscordClient } from "@cartermel/discord.js-decorated";
 import { PingModule } from "./command-modules/PingModule";
+import { GatewayIntentBits } from "discord.js";
 
 const bot = new DiscordClient({
   commandPrefix: "!",
@@ -49,6 +50,7 @@ bot.login(process.env.token);
 ```typescript
 // command-modules/PingModule.ts
 import { command } from "@cartermel/discord.js-decorated";
+import { Message } from "discord.js";
 
 export class PingModule {
   @command("ping")

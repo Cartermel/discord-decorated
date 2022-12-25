@@ -5,7 +5,7 @@ describe("Command Decorator", () => {
   const testModule = new TestModule();
 
   it("should create metadata on methods", () => {
-    // TODO: reflect typings in tests - for now just ignore
+    // @ts-ignore - TODO: reflect typings in tests - for now just ignore
     const data = Reflect.getMetadata(
       "COMMAND",
       testModule

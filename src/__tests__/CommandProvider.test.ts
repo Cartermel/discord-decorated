@@ -56,6 +56,6 @@ describe("CommandProvider", () => {
       []
     );
 
-    expect(result).toBe("1,2,3,4,5");
+    expect(result).toBe("1,2,3,4");
   });
 });

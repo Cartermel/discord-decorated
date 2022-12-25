@@ -19,6 +19,6 @@
     "build": "tsc",
     "build:clean": "rimraf dist/ && tsc",
     "build:publish": "yarn build:clean && yarn publish --access=public",
-    "watch": "tsc --watc"
+    "watch": "tsc --watch"
   }
 }

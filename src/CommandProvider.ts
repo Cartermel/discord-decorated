@@ -15,7 +15,7 @@ export class CommandProvider {
   private readonly commands = new Map<string, CommandFunction>();
 
   /**
-   * Creates a new CommandProvider with the given CommandModule's
+   * Creates a new CommandProvider with the given CommandModules
    *
    * @param modules the command modules to register
    */

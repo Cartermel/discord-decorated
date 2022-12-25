@@ -52,6 +52,7 @@ export class DiscordClient extends Client {
 
     if (!content.startsWith(this.commandPrefix)) return;
 
+    // TODO: this only supports one word commands, worth it to build in more than 1 word commands?
     const args = content.slice(this.commandPrefix.length).split(" ");
     const command = args.shift();
 

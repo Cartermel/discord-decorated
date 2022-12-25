@@ -33,6 +33,7 @@ export class DiscordClient extends Client {
     this.commandProvider = new CommandProvider(commands);
     this.commandPrefix = commandPrefix;
 
+    // TODO: remove message create handler overriding ? this class extends Client - users can simply add / remove event listeners
     // assign callbacks from options or default implementations
     if (commandErrorCallback) this.commandErrorCallback = commandErrorCallback;
     this.on("messageCreate", messageCreateHandler || this.messageCreateHandler);

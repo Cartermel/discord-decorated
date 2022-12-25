@@ -4,8 +4,59 @@ A lightweight exstension library on top of discord.js, inspired by [DSharpPlus.C
 
 ## Features
 
-- Command decorators
-- Dependency injection (using tsyringe)
+- [Command decorators](#Command-Decorators)
+- [Dependency injection (using tsyringe)](#Dependency-Injection)
+
+## Installation
+
+discord.js-decorated depends on discord.js tsyringe and a reflect polyfill - for the example we'll install `reflect-metadata`.
+
+```sh
+npm i @cartermel/discord.js-decorated discord.js tsyringe reflect-metadata
+```
+
+```sh
+yarn add @cartermel/discord.js-decorated discord.js tsyringe reflect-metadata
+```
+
+## Getting Started
+
+discord.js-decorated seeks to make the setup for a discord bot simple, just create a DiscordClient instance - which just inherits from discord.js's Client - then assign command handlers and login!
+
+```typescript
+// bot.ts
+import "reflect-metadata"; // ensure to import a reflect-metadata as early as possible
+import { DiscordClient } from "@cartermel/discord.js-decorated";
+import { PingModule } from "./command-modules/PingModule";
+
+const bot = new DiscordClient({
+  commandPrefix: "!",
+  commandModules: [PingModule],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    // ...
+  ],
+});
+
+// DiscordClient extends Client, all discord.js methods are available
+bot.on("ready", () => console.log("ready!"));
+
+bot.login(process.env.token);
+```
+
+```typescript
+// command-modules/PingModule.ts
+import { command } from "@cartermel/discord.js-decorated";
+
+export class PingModule {
+  @command("ping")
+  public async ping(msg: Message) {
+    await msg.reply("pong!");
+  }
+}
+```
 
 ## Command Decorators
 
@@ -45,6 +96,8 @@ export class EchoModule {
 discord.js-decorated using tsyringe for dependency injection on it's CommandModule's and should work out of the box after following the install instructions.
 
 ```typescript
+// use tsyringe's decorators
+@injectable()
 export class DependentModule {
   // dbService injected through constructor using tsyringe
   constructor(private readonly dbService: DbService) {}

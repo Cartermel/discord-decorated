@@ -1,6 +1,5 @@
 import { Client, Message } from "discord.js";
 import { CommandProvider } from "./CommandProvider";
-import { CommandModule } from "./models/CommandModule";
 import {
   CommandErrorCallback,
   DiscordClientOptions,

@@ -1,5 +1,5 @@
 import { ClientOptions, Message } from "discord.js";
-import { CommandModule } from "./CommandModule";
+import { constructor } from "tsyringe/dist/typings/types";
 
 export type CommandErrorCallback = (
   error: any,
@@ -8,7 +8,7 @@ export type CommandErrorCallback = (
 
 export interface DiscordClientOptions extends ClientOptions {
   /** Command handlers to register to the DiscordClient */
-  commands: CommandModule[];
+  commandModules: constructor<Object>[];
 
   /** String prefix to use for Commands */
   commandPrefix: string;

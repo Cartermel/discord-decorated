@@ -21,7 +21,7 @@ export class DiscordClient extends Client {
     super(options);
 
     const {
-      commands,
+      commandModules,
       commandPrefix,
       messageCreateHandler,
       commandErrorCallback,
@@ -30,7 +30,7 @@ export class DiscordClient extends Client {
     if (commandPrefix.length === 0)
       throw new Error("Command prefix must have a length greater than 0.");
 
-    this.commandProvider = new CommandProvider(commands);
+    this.commandProvider = new CommandProvider(commandModules);
     this.commandPrefix = commandPrefix;
 
     // TODO: remove message create handler overriding ? this class extends Client - users can simply add / remove event listeners

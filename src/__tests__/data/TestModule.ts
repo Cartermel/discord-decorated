@@ -1,11 +1,10 @@
-import { CommandModule } from "../../models/CommandModule";
 import { command } from "../../decorators/command";
 import { Message } from "discord.js";
 
 /**
  * Module to enable easier testing
  */
-export class TestModule extends CommandModule {
+export class TestModule {
   @command("test")
   public async testCommand(msg: Message<boolean>, args: string[]) {
     // TODO: eslint gives a warning about enabling "experimentalDecirators" which is enabled in the root tsconfig

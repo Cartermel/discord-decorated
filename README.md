@@ -1,6 +1,6 @@
 # discord.js-decorated
 
-A lightweight exstension library on top of discord.js, inspired by [DSharpPlus.CommandsNext](https://github.com/DSharpPlus/DSharpPlus)
+A lightweight extension library on top of discord.js, inspired by [DSharpPlus.CommandsNext](https://github.com/DSharpPlus/DSharpPlus)
 
 ## Features
 

@@ -1,15 +1,15 @@
 <div>
   <h1>
-    <img src="./assets/discord-decorated.svg" width="546" />
+    <img src="./assets/discord-decorated.svg" width="555" />
   </h1>
 
-  <div class="badge-container">
-    <a href="https://discordx.js.org/discord"
+  <div>
+    <a href="https://github.com/Cartermel/discord-decorated/actions"
       ><img
         src="https://github.com/Cartermel/discord.js-decorated/actions/workflows/test.yml/badge.svg"
         alt="Test Status"
     /></a>
-    <a href="https://www.paypal.me/vijayxmeena"
+    <a href="https://www.npmjs.com/package/discord-decorated"
       ><img
         src="https://img.shields.io/npm/v/discord-decorated"
         alt="NPM version"

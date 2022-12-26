@@ -1,7 +1,7 @@
 <div>
-  <img src="./assets/discord-decorated.svg" width="546" />
-
-  <br/>
+  <h1>
+    <img src="./assets/discord-decorated.svg" width="546" />
+  </h1>
 
   <div class="badge-container">
     <a href="https://discordx.js.org/discord"

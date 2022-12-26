@@ -19,8 +19,6 @@
   <p>
     <b>A lightweight extension library on top of discord.js inspired by <a href="https://github.com/DSharpPlus/DSharpPlus">DSharpPlus.CommandsNext</a></b>
   </p>
-
-  <br/>
 </div>
 
 ## Features

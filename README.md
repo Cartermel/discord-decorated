@@ -11,13 +11,13 @@
     /></a>
     <a href="https://www.paypal.me/vijayxmeena"
       ><img
-        src="https://img.shields.io/npm/v/@cartermel/discord.js-decorated"
+        src="https://img.shields.io/npm/v/discord-decorated"
         alt="NPM version"
     /></a>
   </div>
 
   <p>
-    <b>A lightweight extension library on top of discord.js inspired by <a href="https://github.com/DSharpPlus/DSharpPlus">DSharpPlus.CommandsNext</a></b>
+    <b>A lightweight extension library on top of <a href="https://github.com/discordjs/discord.js">discord.js</a> inspired by <a href="https://github.com/DSharpPlus/DSharpPlus">DSharpPlus.CommandsNext</a></b>
   </p>
 </div>
 

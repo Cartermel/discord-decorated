@@ -4,9 +4,9 @@
   </h1>
 
   <div>
-    <a href="https://github.com/Cartermel/discord-decorated/actions"
+    <a href="https://github.com/Cartermel/discord-decorated/actions/workflows/test.yml"
       ><img
-        src="https://github.com/Cartermel/discord.js-decorated/actions/workflows/test.yml/badge.svg"
+        src="https://github.com/Cartermel/discord-decorated/actions/workflows/test.yml/badge.svg"
         alt="Test Status"
     /></a>
     <a href="https://www.npmjs.com/package/discord-decorated"
@@ -25,27 +25,28 @@
 
 - [Command decorators](#Command-Decorators)
 - [Dependency injection (using tsyringe)](#Dependency-Injection)
+- [Argument Transforming](#Argument-Transforming)
 
 ## Installation
 
-discord.js-decorated depends on discord.js tsyringe and a reflect polyfill - for the example we'll install `reflect-metadata`.
+discord-decorated depends on discord.js tsyringe and a reflect polyfill - for the example we'll install `reflect-metadata`.
 
 ```sh
-npm i @cartermel/discord.js-decorated discord.js tsyringe reflect-metadata
+npm i discord-decorated discord.js tsyringe reflect-metadata
 ```
 
 ```sh
-yarn add @cartermel/discord.js-decorated discord.js tsyringe reflect-metadata
+yarn add discord-decorated discord.js tsyringe reflect-metadata
 ```
 
 ## Getting Started
 
-discord.js-decorated seeks to make the setup for a discord bot simple, just create a DiscordClient instance - which just inherits from discord.js's Client - then assign command handlers and login!
+discord-decorated seeks to make the setup for a discord bot simple, just create a DiscordClient instance - which just inherits from discord.js's Client - then assign command handlers and login!
 
 ```typescript
 // bot.ts
 import "reflect-metadata"; // ensure to import a reflect-metadata as early as possible
-import { DiscordClient } from "@cartermel/discord.js-decorated";
+import { DiscordClient } from "discord-decorated";
 import { PingModule } from "./command-modules/PingModule";
 import { GatewayIntentBits } from "discord.js";
 
@@ -68,7 +69,7 @@ bot.login(process.env.token);
 
 ```typescript
 // command-modules/PingModule.ts
-import { command } from "@cartermel/discord.js-decorated";
+import { command } from "discord-decorated";
 import { Message } from "discord.js";
 
 export class PingModule {
@@ -92,7 +93,7 @@ You'll also have to modify your `tsconfig.json` to include the following setting
 
 ## Command Decorators
 
-discord.js-decorated adds the ability to decorate class methods with command decorators allowing easier command creation / classification.
+discord-decorated adds the ability to decorate class methods with command decorators allowing easier command creation / classification.
 
 ```typescript
 // PongModule.ts
@@ -125,7 +126,7 @@ export class EchoModule {
 
 ## Dependency Injection
 
-discord.js-decorated using tsyringe for dependency injection on it's CommandModule's and should work out of the box after following the install instructions.
+discord-decorated using tsyringe for dependency injection on it's CommandModule's and should work out of the box after following the install instructions.
 
 ```typescript
 // use tsyringe's decorators
@@ -140,6 +141,68 @@ export class DependentModule {
     const data = await this.dbService.getData();
 
     return msg.reply(data.toString());
+  }
+}
+```
+
+## Argument Transforming
+
+discord-decorated comes with two built in argument transformers by default, the `ParseNumberTransformer` and the `ParseIntTransformer` which takes the string arguments from discord and parse them numbers / integers.
+
+```typescript
+export class ParserModule {
+  // pass the transformer in to the command annotation
+  @command("parse-numbers", new ParseNumberTransformer())
+  public async parse(message: Message, args: number[]) {
+    // args will be an array of numbers
+    console.log(args);
+  }
+}
+```
+
+You can easily create your own transformers by creating a class that implements the `ITransformer` interface from discord-decorated
+
+```typescript
+import { ITransformer } from "discord-decorated";
+
+// customer transformer which takes the arguments and converts them to caps
+export class MyTransformer implements ITransformer<string> {
+  // ITransformer requires a Promise returning an array of the desired transformed type
+  async transform(args: string[]): Promise<string[]> {
+    // simply transform each argument to uppercase
+    return args.map((arg) => arg.toUpperCase());
+  }
+}
+```
+
+```typescript
+export class MyCommandModule {
+  // pass the transformer in to the command annotation
+  @command("transform", new MyTransformer())
+  public async transform(message: Message, args: number[]) {
+    // from discord: ["hello"]
+
+    // args == ["HELLO"]
+    console.log(args);
+  }
+}
+```
+
+To exit a transformer's parse method, in case parsing has failed, just throw an error and the command will not be run.
+
+```typescript
+import { ITransformer } from "discord-decorated";
+
+export class DisallowTheNumberOne implements ITransformer<number> {
+  async transform(args: string[]): Promise<number[]> {
+    return args.map((arg) => {
+      const arg = parseFloat(arg);
+
+      // if a user sends 1 in to the command, it will not be run!
+      if (arg === 1) throw new Error();
+
+      return arg;
+    });
   }
 }
 ```

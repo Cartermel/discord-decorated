@@ -1,5 +1,7 @@
 # discord.js-decorated
 
+[![Package](https://img.shields.io/npm/v/@cartermel/discord.js-decorated)](https://www.npmjs.com/package/@cartermel/discord.js-decorated)
+
 A lightweight extension library on top of discord.js, inspired by [DSharpPlus.CommandsNext](https://github.com/DSharpPlus/DSharpPlus)
 
 ## Features
@@ -56,6 +58,17 @@ export class PingModule {
   @command("ping")
   public async ping(msg: Message) {
     await msg.reply("pong!");
+  }
+}
+```
+
+You'll also have to modify your `tsconfig.json` to include the following settings
+
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
 ```

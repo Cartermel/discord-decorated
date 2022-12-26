@@ -7,3 +7,5 @@ if (typeof Reflect === "undefined" || !Reflect.getMetadata) {
 export { DiscordClient } from "./DiscordClient";
 export { command } from "./decorators/command";
 export { ITransformer } from "./transformers/ITransformer";
+export { ParseNumberTransformer } from "./transformers/ParseNumberTransformer";
+export { ParseIntTransformer } from "./transformers/ParseIntTransformer";

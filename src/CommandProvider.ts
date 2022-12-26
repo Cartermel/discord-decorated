@@ -34,9 +34,9 @@ export class CommandProvider {
         );
       }
 
-      data.forEach(({ name, propertyKey }) => {
-        // @ts-ignore - javascript time baby, we know this prop exists because it's in the metadata - so just grab it - might be a cleaner way to achieve this
-        this.commands.set(name, { propertyKey, instance });
+      // create a new CommandRecord for each CommandMetadata and add to the command map
+      data.forEach(({ name, propertyKey, transformer }) => {
+        this.commands.set(name, { propertyKey, instance, transformer });
       });
     });
   }
@@ -57,7 +57,16 @@ export class CommandProvider {
 
     if (!record) return;
 
-    const { propertyKey, instance } = record;
+    const { propertyKey, instance, transformer } = record;
+
+    if (transformer !== undefined) {
+      try {
+        // TODO: ts thinks this always returns a string[], as that what args types it as - I don't think we really care though as the user will define the type functionality
+        args = await transformer.transform(args);
+      } catch {
+        return;
+      }
+    }
 
     // this syntax is a little weird... should probably refactor but referencing the function directly resulting in dependencies being lost
     // ie: this.dependency wouldn't resolve as it's in a function reference, which 'this' refers to the function rather than the class

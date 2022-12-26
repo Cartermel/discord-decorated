@@ -1,6 +1,25 @@
-# discord.js-decorated
+<div>
+  <h1>
+    <img src="./assets/discord-decorated.svg" width="546" />
+  </h1>
 
-A lightweight extension library on top of discord.js, inspired by [DSharpPlus.CommandsNext](https://github.com/DSharpPlus/DSharpPlus)
+  <div class="badge-container">
+    <a href="https://discordx.js.org/discord"
+      ><img
+        src="https://github.com/Cartermel/discord.js-decorated/actions/workflows/test.yml/badge.svg"
+        alt="Test Status"
+    /></a>
+    <a href="https://www.paypal.me/vijayxmeena"
+      ><img
+        src="https://img.shields.io/npm/v/discord-decorated"
+        alt="NPM version"
+    /></a>
+  </div>
+
+  <p>
+    <b>A lightweight extension library on top of <a href="https://github.com/discordjs/discord.js">discord.js</a> inspired by <a href="https://github.com/DSharpPlus/DSharpPlus">DSharpPlus.CommandsNext</a></b>
+  </p>
+</div>
 
 ## Features
 
@@ -56,6 +75,17 @@ export class PingModule {
   @command("ping")
   public async ping(msg: Message) {
     await msg.reply("pong!");
+  }
+}
+```
+
+You'll also have to modify your `tsconfig.json` to include the following settings
+
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
 ```

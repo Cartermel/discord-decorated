@@ -62,6 +62,7 @@ export class CommandProvider {
     if (transformer !== undefined) {
       try {
         // TODO: ts thinks this always returns a string[], as that what args types it as - I don't think we really care though as the user will define the type functionality
+        // @ts-ignore
         args = await transformer.transform(args);
       } catch {
         return;
